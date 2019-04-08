@@ -4,7 +4,7 @@
 #
 Name     : gtkwave
 Version  : 3.3.100
-Release  : 1
+Release  : 2
 URL      : http://gtkwave.sourceforge.net/gtkwave-3.3.100.tar.gz
 Source0  : http://gtkwave.sourceforge.net/gtkwave-3.3.100.tar.gz
 Summary  : A wave viewer which reads LXT, LXT2, VZT, GHW and VCD/EVCD files
