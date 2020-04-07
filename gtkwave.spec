@@ -4,10 +4,10 @@
 #
 Name     : gtkwave
 Version  : 3.3.104
-Release  : 6
+Release  : 7
 URL      : http://gtkwave.sourceforge.net/gtkwave-3.3.104.tar.gz
 Source0  : http://gtkwave.sourceforge.net/gtkwave-3.3.104.tar.gz
-Summary  : A wave viewer which reads LXT, LXT2, VZT, GHW and VCD/EVCD files
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 bzip2-1.0.6
 Requires: gtkwave-bin = %{version}-%{release}
@@ -29,12 +29,12 @@ BuildRequires : tk-dev
 BuildRequires : xz-dev
 
 %description
-ZLIB DATA COMPRESSION LIBRARY
-zlib 1.2.11 is a general purpose data compression library.  All the code is
-thread safe.  The data format used by the zlib library is described by RFCs
-(Request for Comments) 1950 to 1952 in the files
-http://tools.ietf.org/html/rfc1950 (zlib format), rfc1951 (deflate format) and
-rfc1952 (gzip format).
+1) Type ./configure
+2) make
+3) make install (as root)
+Make sure you copy the .gtkwaverc file to your home directory or to your
+VCD project directory.  It contains the prefs for a good configuration
+that most people find ergonomic.  It is not strictly necessary however.
 
 %package bin
 Summary: bin components for the gtkwave package.
@@ -79,15 +79,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1581696525
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1586237359
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --disable-schemas-compile --disable-mime-update
 make  %{?_smp_mflags}
@@ -100,10 +99,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1581696525
+export SOURCE_DATE_EPOCH=1586237359
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gtkwave
 cp %{_builddir}/gtkwave-3.3.104/COPYING %{buildroot}/usr/share/package-licenses/gtkwave/13d2034b5ee3cb8d1a076370cf8f0e344a5d0855
+cp %{_builddir}/gtkwave-3.3.104/LICENSE.TXT %{buildroot}/usr/share/package-licenses/gtkwave/4b28937ea252644bae36c9f119991061849f0c51
 cp %{_builddir}/gtkwave-3.3.104/src/libbz2/LICENSE %{buildroot}/usr/share/package-licenses/gtkwave/1c0c6888759a63c32bca7eb63353af2cd9bd5d9e
 %make_install
 
@@ -199,6 +199,7 @@ cp %{_builddir}/gtkwave-3.3.104/src/libbz2/LICENSE %{buildroot}/usr/share/packag
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/gtkwave/13d2034b5ee3cb8d1a076370cf8f0e344a5d0855
 /usr/share/package-licenses/gtkwave/1c0c6888759a63c32bca7eb63353af2cd9bd5d9e
+/usr/share/package-licenses/gtkwave/4b28937ea252644bae36c9f119991061849f0c51
 
 %files man
 %defattr(0644,root,root,0755)
