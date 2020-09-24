@@ -4,7 +4,7 @@
 #
 Name     : gtkwave
 Version  : 3.3.106
-Release  : 9
+Release  : 10
 URL      : http://gtkwave.sourceforge.net/gtkwave-3.3.106.tar.gz
 Source0  : http://gtkwave.sourceforge.net/gtkwave-3.3.106.tar.gz
 Summary  : No detailed summary available
