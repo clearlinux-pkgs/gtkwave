@@ -1759,3 +1759,4 @@
 		VCD reader fixes for unnamed Icarus begin blocks.
 		String data type crash fix in fst.c.
 3.3.113	04oct22	Dummy release to keep in sync with gtk3 version.
+3.3.114	23nov22	Buffer overflow fixes in FST reader.
