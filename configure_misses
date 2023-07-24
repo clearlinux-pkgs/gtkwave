@@ -1,17 +1,34 @@
 Configure miss: fsdb2vcd
+Configure miss: fsdb2vcd
+Configure miss: fsdbdebug
 Configure miss: fsdbdebug
 Configure miss: gedit
+Configure miss: gedit
+Configure miss: if FsdbReader support should be used
 Configure miss: if FsdbReader support should be used
 Configure miss: if Judy array support should be enabled
+Configure miss: if Judy array support should be enabled
+Configure miss: if Tcl usage should be disabled
 Configure miss: if Tcl usage should be disabled
 Configure miss: if Tcl/Tk (if present) should be stubified
+Configure miss: if Tcl/Tk (if present) should be stubified
+Configure miss: if ae2 support should be used
 Configure miss: if ae2 support should be used
 Configure miss: if fatlines should be used
+Configure miss: if fatlines should be used
+Configure miss: if manymarkers should be used
 Configure miss: if manymarkers should be used
 Configure miss: if structure packing should be enabled
+Configure miss: if structure packing should be enabled
+Configure miss: rpc/types.h
 Configure miss: rpc/types.h
 Configure miss: rpc/xdr.h
+Configure miss: rpc/xdr.h
+Configure miss: vpd2vcd
 Configure miss: vpd2vcd
 Configure miss: wlf2vcd
+Configure miss: wlf2vcd
 Configure miss: xdrmem_create in -lnsl
+Configure miss: xdrmem_create in -lnsl
+Configure miss: xdrmem_create in -lrpc
 Configure miss: xdrmem_create in -lrpc

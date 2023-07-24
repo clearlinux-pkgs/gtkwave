@@ -4,10 +4,10 @@
 # Using build pattern: configure
 #
 Name     : gtkwave
-Version  : 3.3.115
-Release  : 19
-URL      : https://gtkwave.sourceforge.net/gtkwave-3.3.115.tar.gz
-Source0  : https://gtkwave.sourceforge.net/gtkwave-3.3.115.tar.gz
+Version  : 3.3.116
+Release  : 20
+URL      : https://gtkwave.sourceforge.net/gtkwave-3.3.116.tar.gz
+Source0  : https://gtkwave.sourceforge.net/gtkwave-3.3.116.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 bzip2-1.0.6
@@ -76,46 +76,81 @@ man components for the gtkwave package.
 
 
 %prep
-%setup -q -n gtkwave-3.3.115
-cd %{_builddir}/gtkwave-3.3.115
+%setup -q -n gtkwave-3.3.116
+cd %{_builddir}/gtkwave-3.3.116
+pushd ..
+cp -a gtkwave-3.3.116 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680548207
+export SOURCE_DATE_EPOCH=1690208178
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --disable-schemas-compile --disable-mime-update
 make  %{?_smp_mflags}
 
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static --disable-schemas-compile --disable-mime-update
+make  %{?_smp_mflags}
+popd
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
+cd ../buildavx2;
+make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1680548207
+export SOURCE_DATE_EPOCH=1690208178
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gtkwave
 cp %{_builddir}/gtkwave-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gtkwave/13d2034b5ee3cb8d1a076370cf8f0e344a5d0855 || :
 cp %{_builddir}/gtkwave-%{version}/src/libbz2/LICENSE %{buildroot}/usr/share/package-licenses/gtkwave/1c0c6888759a63c32bca7eb63353af2cd9bd5d9e || :
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/evcd2vcd
+/V3/usr/bin/fst2vcd
+/V3/usr/bin/fstminer
+/V3/usr/bin/gtkwave
+/V3/usr/bin/lxt2miner
+/V3/usr/bin/lxt2vcd
+/V3/usr/bin/rtlbrowse
+/V3/usr/bin/shmidcat
+/V3/usr/bin/twinwave
+/V3/usr/bin/vcd2fst
+/V3/usr/bin/vcd2lxt
+/V3/usr/bin/vcd2lxt2
+/V3/usr/bin/vcd2vzt
+/V3/usr/bin/vzt2vcd
+/V3/usr/bin/vztminer
+/V3/usr/bin/xml2stems
 /usr/bin/evcd2vcd
 /usr/bin/fst2vcd
 /usr/bin/fstminer
