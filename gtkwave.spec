@@ -4,10 +4,10 @@
 # Using build pattern: configure
 #
 Name     : gtkwave
-Version  : 3.3.116
-Release  : 20
-URL      : https://gtkwave.sourceforge.net/gtkwave-3.3.116.tar.gz
-Source0  : https://gtkwave.sourceforge.net/gtkwave-3.3.116.tar.gz
+Version  : 3.3.117
+Release  : 21
+URL      : https://gtkwave.sourceforge.net/gtkwave-3.3.117.tar.gz
+Source0  : https://gtkwave.sourceforge.net/gtkwave-3.3.117.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 bzip2-1.0.6
@@ -76,10 +76,10 @@ man components for the gtkwave package.
 
 
 %prep
-%setup -q -n gtkwave-3.3.116
-cd %{_builddir}/gtkwave-3.3.116
+%setup -q -n gtkwave-3.3.117
+cd %{_builddir}/gtkwave-3.3.117
 pushd ..
-cp -a gtkwave-3.3.116 buildavx2
+cp -a gtkwave-3.3.117 buildavx2
 popd
 
 %build
@@ -87,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1690208178
+export SOURCE_DATE_EPOCH=1692024610
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -119,7 +119,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1690208178
+export SOURCE_DATE_EPOCH=1692024610
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gtkwave
 cp %{_builddir}/gtkwave-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gtkwave/13d2034b5ee3cb8d1a076370cf8f0e344a5d0855 || :
