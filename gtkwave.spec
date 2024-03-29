@@ -7,12 +7,12 @@
 #
 Name     : gtkwave
 Version  : 3.3.119
-Release  : 23
+Release  : 24
 URL      : https://gtkwave.sourceforge.net/gtkwave-3.3.119.tar.gz
 Source0  : https://gtkwave.sourceforge.net/gtkwave-3.3.119.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GPL-2.0 bzip2-1.0.6
+License  : GPL-2.0 MIT bzip2-1.0.6
 Requires: gtkwave-bin = %{version}-%{release}
 Requires: gtkwave-data = %{version}-%{release}
 Requires: gtkwave-license = %{version}-%{release}
@@ -30,7 +30,6 @@ BuildRequires : tcl
 BuildRequires : tcl-dev
 BuildRequires : tk
 BuildRequires : tk-dev
-BuildRequires : xz-dev
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -89,7 +88,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1711372154
+export SOURCE_DATE_EPOCH=1711743578
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -105,7 +104,8 @@ FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
 export GOAMD64=v2
-%configure --disable-static --disable-schemas-compile --disable-mime-update
+%configure --disable-static --disable-schemas-compile --disable-mime-update \
+--disable-xz
 make  %{?_smp_mflags}
 
 unset PKG_CONFIG_PATH
@@ -116,7 +116,8 @@ CXXFLAGS="$CLEAR_INTERMEDIATE_CXXFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS -march=x86-64-v3 "
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS -march=x86-64-v3 "
-%configure --disable-static --disable-schemas-compile --disable-mime-update
+%configure --disable-static --disable-schemas-compile --disable-mime-update \
+--disable-xz
 make  %{?_smp_mflags}
 popd
 %check
@@ -143,10 +144,11 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1711372154
+export SOURCE_DATE_EPOCH=1711743578
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/gtkwave
 cp %{_builddir}/gtkwave-%{version}/COPYING %{buildroot}/usr/share/package-licenses/gtkwave/13d2034b5ee3cb8d1a076370cf8f0e344a5d0855 || :
+cp %{_builddir}/gtkwave-%{version}/LICENSE.TXT %{buildroot}/usr/share/package-licenses/gtkwave/93a24b78a50ec984bc2b7b13a8041ddded409712 || :
 cp %{_builddir}/gtkwave-%{version}/src/libbz2/LICENSE %{buildroot}/usr/share/package-licenses/gtkwave/1c0c6888759a63c32bca7eb63353af2cd9bd5d9e || :
 export GOAMD64=v2
 GOAMD64=v3
@@ -264,6 +266,7 @@ GOAMD64=v2
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/gtkwave/13d2034b5ee3cb8d1a076370cf8f0e344a5d0855
 /usr/share/package-licenses/gtkwave/1c0c6888759a63c32bca7eb63353af2cd9bd5d9e
+/usr/share/package-licenses/gtkwave/93a24b78a50ec984bc2b7b13a8041ddded409712
 
 %files man
 %defattr(0644,root,root,0755)

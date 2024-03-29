@@ -1,1 +1,2 @@
 --disable-schemas-compile --disable-mime-update
+--disable-xz
