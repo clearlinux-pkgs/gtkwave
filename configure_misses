@@ -12,6 +12,8 @@ Configure miss: if Tcl usage should be disabled
 Configure miss: if Tcl usage should be disabled
 Configure miss: if Tcl/Tk (if present) should be stubified
 Configure miss: if Tcl/Tk (if present) should be stubified
+Configure miss: if XZ should be enabled
+Configure miss: if XZ should be enabled
 Configure miss: if ae2 support should be used
 Configure miss: if ae2 support should be used
 Configure miss: if fatlines should be used
