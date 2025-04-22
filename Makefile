@@ -1,5 +1,5 @@
 PKG_NAME := gtkwave
-URL = https://gtkwave.sourceforge.net/gtkwave-3.3.121.tar.gz
+URL = https://gtkwave.sourceforge.net/gtkwave-3.3.122.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
